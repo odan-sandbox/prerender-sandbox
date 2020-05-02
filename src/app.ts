@@ -1,17 +1,21 @@
 import express from "express";
-import prerender from "prerender-node";
+import prerenderMiddleware from "prerender-node";
+import prerender from "prerender";
 
 const app = express();
+const prerenderPort = 3001;
+const server = prerender({ port: prerenderPort });
 
-app.use(prerender);
+prerenderMiddleware.prerenderServiceUrl = `http://localhost:${prerenderPort}`;
 
-app.get("/", (_, res) => {
-  res.send("poyo");
-});
+app.use(prerenderMiddleware);
+
+app.use(express.static("./public"));
 
 async function main(): Promise<void> {
   console.log("poyo");
 
+  server.start();
   const port = 3000;
 
   app.listen(port, () => {
