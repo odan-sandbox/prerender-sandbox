@@ -1,6 +1,13 @@
 import express from "express";
+import prerender from "prerender-node";
 
 const app = express();
+
+app.use(prerender);
+
+app.get("/", (_, res) => {
+  res.send("poyo");
+});
 
 async function main(): Promise<void> {
   console.log("poyo");
