@@ -6,7 +6,7 @@ $ yarn ts-node --files src/app.ts
 
 ## 確認
 ### 普通
-```
+```bash
 $ curl http://localhost:3000
 <!DOCTYPE html>
 <html lang="en">
